@@ -6,6 +6,7 @@ import { sendMailForConfirmation } from "./controllers/PaperSubmissionMail.js";
 import { sendCopyrightFormEmail } from "./controllers/sendCopyrightFormMail.js";
 import multer from "multer";
 import { sendCopyrightFormEmailFromAdminPanel } from "./controllers/sendCopyrightFormEmailFromAdminPanel.js";
+import fetchFeed from "./controllers/fetchFeedforAIforINDIA.js";
 
 
 const app=express();
@@ -25,6 +26,8 @@ app.post("/paperSubmission",sendMailForConfirmation)
 app.post("/sendCopyrightFormEmail",upload.single('pdfFile'),sendCopyrightFormEmail)
 
 app.post("/sendCopyrightFormEmailFromAdminPanel",sendCopyrightFormEmailFromAdminPanel)
+
+app.get("/fetchNewsFeed",fetchFeed)
 
 
 const start=async()=>{
