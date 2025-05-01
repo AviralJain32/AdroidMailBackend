@@ -260,12 +260,9 @@ export const sendQuotationMail = async (req, res) => {
                 <div class="section">
                     <h2>Requested Services</h2>
                     <div class="services-list">
+
                         <div class="field">
-                            <span class="label">Abstract Management:</span>
-                            <span class="value">${abstractManagement ? 'Yes' : 'No'}</span>
-                        </div>
-                        <div class="field">
-                            <span class="label">Peer Review Management:</span>
+                            <span class="label">Call for papers and Peer Review Management:</span>
                             <span class="value">${peerReviewManagement ? 'Yes' : 'No'}</span>
                         </div>
                         <div class="field">
