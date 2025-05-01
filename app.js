@@ -7,6 +7,7 @@ import { sendCopyrightFormEmail } from "./controllers/sendCopyrightFormMail.js";
 import multer from "multer";
 import { sendCopyrightFormEmailFromAdminPanel } from "./controllers/sendCopyrightFormEmailFromAdminPanel.js";
 import fetchFeed from "./controllers/fetchFeedforAIforINDIA.js";
+import { sendQuotationMail } from "./controllers/sendQuotationOnEmail.js";
 
 
 const app=express();
@@ -28,6 +29,9 @@ app.post("/sendCopyrightFormEmail",upload.single('pdfFile'),sendCopyrightFormEma
 app.post("/sendCopyrightFormEmailFromAdminPanel",sendCopyrightFormEmailFromAdminPanel)
 
 app.get("/fetchNewsFeed",fetchFeed)
+
+app.post("/sendQuotationToMail",sendQuotationMail)
+
 
 
 const start=async()=>{
