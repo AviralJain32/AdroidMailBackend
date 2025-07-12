@@ -7,7 +7,7 @@ dotenv.config()
 // Set the SendGrid API key
 sgMail.setApiKey(process.env.SENDGRID_API)
 
-export const sendMail = async (req, res) => {
+export const sendQueryMailForAdroidUK = async (req, res) => {
   const {
     firstName,
     lastName,

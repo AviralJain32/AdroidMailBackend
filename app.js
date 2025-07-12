@@ -8,6 +8,7 @@ import multer from "multer";
 import { sendCopyrightFormEmailFromAdminPanel } from "./controllers/sendCopyrightFormEmailFromAdminPanel.js";
 import fetchFeed from "./controllers/fetchFeedforAIforINDIA.js";
 import { sendQuotationMail } from "./controllers/sendQuotationOnEmail.js";
+import { sendQueryMailForAdroidUK } from "./controllers/AdroidConnetzUKsendMail.js";
 
 
 const app=express();
@@ -31,6 +32,8 @@ app.post("/sendCopyrightFormEmailFromAdminPanel",sendCopyrightFormEmailFromAdmin
 app.get("/fetchNewsFeed",fetchFeed)
 
 app.post("/sendQuotationToMail",sendQuotationMail)
+
+app.post("/sendQueryMailForAdroidUK",sendQueryMailForAdroidUK)
 
 
 
