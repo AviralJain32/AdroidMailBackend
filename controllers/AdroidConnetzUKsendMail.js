@@ -29,7 +29,7 @@ export const sendQueryMailForAdroidUK = async (req, res) => {
     to: 'info@adroidconnectz.co.uk', // ✅ Final recipient
     from: {
       name: `${firstName} ${lastName}`,
-      email: 'no-reply@adroidconnectz.co.uk', // ✅ Verified sender in SendGrid
+      email: 'adroidjournal@gmail.com', // ✅ Verified sender in SendGrid
     },
     subject: 'New Contact Form Submission - Adroid Connectz',
     html: `
