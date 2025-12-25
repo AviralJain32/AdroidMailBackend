@@ -1,32 +1,14 @@
-import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
-import moment from "moment"
-
-// Load environment variables from .env file
-dotenv.config();
-
-// Set the SendGrid API key
-sgMail.setApiKey(process.env.SENDGRID_API);
+import { sendEmail } from "../services/emailService.js";
 
 export const sendCopyrightFormEmailFromAdminPanel = async (req, res) => {
     const {name, paperID, title, jounralID, email} = req.body;
-
-    console.log(name, paperID, title, jounralID,email);
 
     // Validate the input data
     if (!title || !paperID || !jounralID || !email) {
         return res.status(400).json({ error: "Please provide title, email, and other required fields" });
     }
-
     // Construct the email message
-    const msg = {
-        to: `${email}`, // Send to recipient's email
-        from: {
-            name: 'Adroid Publishing',
-            email: 'adroidjournal@gmail.com'
-        }, // Sender's details
-        subject: 'Adroid Publishing: Publishing Agreement Link',
-        html: `
+    const htmlContent = `
         <div style="font-family: Arial, sans-serif; color: #333;">
             <h1>Thank you for your submission, ${name}</h1>
             <p>We are pleased to inform you that your manuscript has been received for consideration in Adroid Publishing's journal.</p>
@@ -51,12 +33,16 @@ export const sendCopyrightFormEmailFromAdminPanel = async (req, res) => {
             <p>Best regards,</p>
             <p><strong>Adroid Publishing Team</strong></p>
         </div>
-        `,
-    };
+        `
 
     try {
-        // Send the email
-        await sgMail.send(msg);
+        await sendEmail({
+            to: email,
+            subject: 'Adroid Publishing: Publishing Agreement Link',
+            htmlContent,
+            senderName: "Adroid Publishing Team",
+            senderEmail: "adroidpublications@gmail;com"
+        });
         res.status(200).json({ message: 'Email sent successfully' });
     } 
     catch (error) {

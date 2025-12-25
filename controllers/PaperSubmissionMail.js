@@ -1,3 +1,4 @@
+//deprecated file: controllers/PaperSubmissionMail.js
 
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';

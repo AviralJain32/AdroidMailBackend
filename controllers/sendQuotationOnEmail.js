@@ -1,12 +1,6 @@
-import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
+
 import moment from "moment";
-
-// Load environment variables from .env file
-dotenv.config();
-
-// Set the SendGrid API key
-sgMail.setApiKey(process.env.SENDGRID_API);
+import { sendEmail } from "../services/email.service.js";
 
 /**
  * Handles sending a formatted email for conference quote requests
@@ -380,40 +374,35 @@ export const sendQuotationMail = async (req, res) => {
         </html>
         `;
 
-        // Define email messages
-        const adminMsg = {
-            to: 'adroidpublications@gmail.com',
-            from: {
-                name: 'Adroid Publishing',
-                email: 'adroidjournal@gmail.com'
-            },
-            subject: `Conference Quote Request: ${conferenceTitle} [${quoteRef}]`,
-            html: emailHtml,
-        };
-
-        // Confirmation email to the organizer
-        const organizerMsg = {
-            to: organiserEmail,
-            from: {
-                name: 'Adroid Publishing',
-                email: 'adroidjournal@gmail.com'
-            },
-            subject: `Your Conference Quote Request - ${quoteRef}`,
-            html: organizerEmailHtml,
-        };
-
-        // Send the emails
+        // Send both emails in parallel
         await Promise.all([
-            sgMail.send(adminMsg),
-            sgMail.send(organizerMsg)
+        // Admin email
+        sendEmail({
+            to: "adroidpublications@gmail.com",
+            subject: `Conference Quote Request: ${conferenceTitle} [${quoteRef}]`,
+            htmlContent: emailHtml,
+            senderName: "Adroid Publishing",
+            senderEmail: "adroidjournal@gmail.com",
+        }),
+
+        // Organizer confirmation email
+        sendEmail({
+            to: organiserEmail,
+            subject: `Your Conference Quote Request - ${quoteRef}`,
+            htmlContent: organizerEmailHtml,
+            senderName: "Adroid Publishing",
+            senderEmail: "adroidjournal@gmail.com",
+        }),
         ]);
-        console.log("success")
-        console.log(organiserEmail)
+
+        console.log("success");
+        console.log(organiserEmail);
+
         // Return success response
         return res.status(200).json({
-            success: true,
-            message: 'Quote request submitted successfully',
-            quoteRef: quoteRef
+        success: true,
+        message: "Quote request submitted successfully",
+        quoteRef: quoteRef,
         });
 
     } catch (error) {

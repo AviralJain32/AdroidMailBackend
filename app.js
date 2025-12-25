@@ -1,5 +1,5 @@
 import express from "express"
-import { sendMail } from "./controllers/sendMail.js";
+import { sendQueryEmailForAdroidJournals } from "./controllers/QueryAdroidJournals.js";
 import cors from "cors"
 import { configDotenv } from "dotenv";
 import { sendMailForConfirmation } from "./controllers/PaperSubmissionMail.js";
@@ -21,7 +21,7 @@ app.get("/",(req,res)=>{
     res.send("I am server");
 })
 
-app.post("/sendemail",sendMail)  
+app.post("/sendemail",sendQueryEmailForAdroidJournals)  
 app.post("/paperSubmission",sendMailForConfirmation)
 
 
