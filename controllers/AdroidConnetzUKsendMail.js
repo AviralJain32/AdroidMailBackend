@@ -1,6 +1,6 @@
 
 
-import { sendEmail } from "../services/email.service.js";
+import { sendEmail } from "../services/emailService.js";
 
 export const sendQueryMailForAdroidUK = async (req, res) => {
   const {

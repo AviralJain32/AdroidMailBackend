@@ -70,7 +70,7 @@
 // };
 
 import fs from "fs";
-import { sendEmail } from "../services/email.service.js";
+import { sendEmail } from "../services/emailService.js";
 
 export const sendCopyrightFormEmail = async (req, res) => {
   const { email, authorName, manuscriptTitle, journalEmail } = req.body;
