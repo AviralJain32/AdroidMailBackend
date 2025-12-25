@@ -1,6 +1,6 @@
 
 import moment from "moment";
-import { sendEmail } from "../services/email.service.js";
+import { sendEmail } from "../services/emailService.js";
 
 /**
  * Handles sending a formatted email for conference quote requests
