@@ -9,6 +9,7 @@ import { sendCopyrightFormEmailFromAdminPanel } from "./controllers/sendCopyrigh
 import fetchFeed from "./controllers/fetchFeedforAIforINDIA.js";
 import { sendQuotationMail } from "./controllers/sendQuotationOnEmail.js";
 import { sendQueryMailForAdroidUK } from "./controllers/AdroidConnetzUKsendMail.js";
+import { sendBookQuotationMail } from "./controllers/SendBookSeriesQuotationOnEmail.js";
 
 
 const app=express();
@@ -32,6 +33,8 @@ app.post("/sendCopyrightFormEmailFromAdminPanel",sendCopyrightFormEmailFromAdmin
 app.get("/fetchNewsFeed",fetchFeed)
 
 app.post("/sendQuotationToMail",sendQuotationMail)
+app.post("/sendBookQuotation",sendBookQuotationMail)
+
 
 app.post("/sendQueryMailForAdroidUK",sendQueryMailForAdroidUK)
 
